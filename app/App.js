@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
+import { Router, Route, Link, IndexRoute, hashHistory, browserHistory, IndexLink } from 'react-router';
 
 class App extends React.Component {
   render() {
@@ -22,8 +22,8 @@ const Home = () => <h1>Hello from home!</h1>
 const Address = (props) => (
   <div>
     <br />
-    <Link to="/address">Twitter Feed</Link>&nbsp;
-    <Link to="/address/instagram">Instagram Feed</Link>&nbsp;
+    <IndexLink activeClassName="active" to="/address">Twitter Feed</IndexLink>&nbsp;
+    <IndexLink activeClassName="active" to="/address/instagram">Instagram Feed</IndexLink>&nbsp;
     <h1>We are located at Whitefield, Bangalore</h1>
     {props.children}
   </div>
@@ -31,8 +31,9 @@ const Address = (props) => (
 const NotFound = () => <h1>404 Not Found </h1>
 const Nav = () => (
   <div>
-    <Link to="/">Home</Link> <br />
-    <Link to="/address">Address</Link>
+    <IndexLink activeClassName="active" to="/">Home</IndexLink>&nbsp;
+    <IndexLink activeClassName="active" to="/address">Address</IndexLink>&nbsp;
+    <IndexLink activeClassName="active" to='/about'>About</IndexLink>&nbsp;
   </div>
 )
 const Container = (props) => (
