@@ -7,7 +7,10 @@ class App extends React.Component {
       <Router history={hashHistory}>
         <Route path='/' component={Container}>
           <IndexRoute component={Home} />
-          <Route path='/address' component={Address} />
+          <Route path='/address' component={Address}>
+            <IndexRoute component={TwitterFeed} />
+            <Route path="instagram" component={Instagram} />
+          </Route>
           <Route path='*' component={NotFound} />
         </Route>
       </Router>
@@ -16,7 +19,15 @@ class App extends React.Component {
 }
 
 const Home = () => <h1>Hello from home!</h1>
-const Address = () => <h1>We are located at Whitefield, Bangalore</h1>
+const Address = (props) => (
+  <div>
+    <br />
+    <Link to="/address">Twitter Feed</Link>&nbsp;
+    <Link to="/address/instagram">Instagram Feed</Link>&nbsp;
+    <h1>We are located at Whitefield, Bangalore</h1>
+    {props.children}
+  </div>
+)
 const NotFound = () => <h1>404 Not Found </h1>
 const Nav = () => (
   <div>
@@ -30,5 +41,7 @@ const Container = (props) => (
     {props.children}
   </div>
 )
+const Instagram = () => <h3>Instagram Feed</h3>
+const TwitterFeed = () => <h3>Twitter Feed</h3>
 
 export default App;
